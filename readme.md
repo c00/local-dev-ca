@@ -38,8 +38,10 @@ trust list | grep "Wacky Waiving Inflatable Arm Flailing Dev Certificate Authori
 
 ## Create Certificate for your service
 
+In this example I'm using `keycloak.local` as the domain, as that was my initial use-case.
+
 ```bash
 # Generate Private key, CSR and Certificate
-openssl req -newkey rsa:2048 -nodes -keyout keycloak.local.key -out keycloak.local.csr -config cert_config.cnf && openssl x509 -req -in keycloak.local.csr -CA localdevca.crt -CAkey localdevca.key -CAcreateserial -out keycloak.local.crt -days 365 -sha256 -extfile cert_config.cnf -extensions v3_req
-
+openssl req -newkey rsa:2048 -nodes -keyout keycloak.local.key -out keycloak.local.csr -config cert_config.cnf
+openssl x509 -req -in keycloak.local.csr -CA localdevca.crt -CAkey localdevca.key -CAcreateserial -out keycloak.local.crt -days 365 -sha256 -extfile cert_config.cnf -extensions v3_req
 ```
